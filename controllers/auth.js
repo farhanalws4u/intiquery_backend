@@ -86,6 +86,7 @@ export const loginUser = async (req, res) => {
 export const googleLogin = async (req, res) => {
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
+      console.log("existing", user);
       const payload = {
         id: user.id,
         name: user.name,
@@ -112,11 +113,13 @@ export const googleLogin = async (req, res) => {
       newUser
         .save()
         .then((user) => {
+          console.log("new", user);
           const payload = {
-            id: user.id,
+            id: user._id,
             name: user.name,
             email: user.email,
           };
+
           jwt.sign(
             payload,
             keys.secretOrKey,
