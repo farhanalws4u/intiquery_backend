@@ -25,3 +25,15 @@ export const addUserData = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+
+export const getUserData = async (req, res) => {
+  try {
+    const userId = req.body.id;
+
+    UserData.findOne({ userId })
+      .then((data) => res.status(200).json(data))
+      .catch((err) => console.log(err));
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

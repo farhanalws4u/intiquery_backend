@@ -17,10 +17,6 @@ const QuestionSchema = new Schema({
   user: {
     type: Object,
   },
-
-  answers: {
-    type: [Object],
-  },
 });
 const Question = mongoose.model("questions", QuestionSchema);
 export default Question;
